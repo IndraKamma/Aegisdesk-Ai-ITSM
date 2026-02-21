@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: aegisdesk_db
+    environment:
+      POSTGRES_USER: aegis
+      POSTGRES_PASSWORD: aegis_password
+      POSTGRES_DB: aegisdesk
+    ports:
+      - "5432:5432"
+    volumes:
+      - aegisdesk_pgdata:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aegis -d aegisdesk"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  aegisdesk_pgdata:

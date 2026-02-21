@@ -1,0 +1,286 @@
+/* =========================================================
+   AegisDesk AI Swagger Theme — Records Page Style + Buttons
+   ========================================================= */
+
+html, body { height: 100%; }
+
+body{
+  margin: 0 !important;
+  font-family: ui-sans-serif, system-ui, Segoe UI, Arial !important;
+
+  /* Same vibe as Records */
+  background:
+    radial-gradient(1200px 600px at 20% 0%, rgba(79,125,255,.22), transparent 60%),
+    radial-gradient(900px 600px at 80% 0%, rgba(57,208,255,.16), transparent 60%),
+    #070A12 !important;
+}
+
+/* Same network background */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background: url("/static/network-bg.svg") center/cover no-repeat;
+  opacity: .22;
+  pointer-events: none;
+}
+
+/* Swagger sits above bg */
+.swagger-ui{
+  position: relative;
+  z-index: 1;
+  color: rgba(255,255,255,.92) !important;
+  font-size: 15px !important;
+}
+
+/* =====================
+   Top bar (clean + branded)
+   ===================== */
+.swagger-ui .topbar{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(7,10,18,.60) !important;
+  border-bottom: 1px solid rgba(255,255,255,.12) !important;
+  backdrop-filter: blur(10px);
+  padding: 10px 0 !important;
+}
+
+/* Needed for the Back to Welcome overlay button */
+.swagger-ui .topbar-wrapper{
+  position: relative !important;
+}
+
+/* Remove Swagger logo */
+.swagger-ui .topbar .link img{ display:none !important; }
+
+/* Brand title */
+.swagger-ui .topbar::before{
+  content: "AegisDesk AI — API Docs";
+  display: block;
+  padding: 12px 18px;
+  font-weight: 900;
+  letter-spacing: .2px;
+  color: rgba(255,255,255,.92);
+}
+
+/* =========================================================
+   Back to Welcome link/button (top right)
+   NOTE: CSS cannot truly "click" by itself, so we use an <a>
+   If Swagger doesn’t have an <a> here, we create a fake link
+   using pointer-events + :after. Clicking will not navigate
+   unless you also add the JS snippet I gave earlier.
+   ========================================================= */
+
+/* Visual button */
+.swagger-ui .topbar-wrapper::after{
+  content: "Back to Welcome";
+  position: absolute;
+  right: 18px;
+  top: 8px;
+
+  padding: 10px 16px;
+  border-radius: 16px;
+
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: .2px;
+
+  background: linear-gradient(135deg, rgba(79,125,255,.98), rgba(57,208,255,.70));
+  color: #071018 !important;
+
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 14px 30px rgba(0,0,0,.35);
+
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hover effect like Records */
+.swagger-ui .topbar-wrapper:hover::after{
+  background: linear-gradient(135deg, rgba(79,125,255,1), rgba(57,208,255,.85));
+  box-shadow: 0 20px 50px rgba(57,208,255,.18), 0 18px 40px rgba(0,0,0,.45);
+  transform: translateY(-1px);
+}
+
+/* =====================
+   Layout
+   ===================== */
+.swagger-ui .wrapper{
+  max-width: 1100px !important;
+  margin: 22px auto 44px auto !important;
+  padding: 18px !important;
+}
+
+/* Info header card like your Records hero card */
+.swagger-ui .info{
+  border: 1px solid rgba(255,255,255,.12) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)) !important;
+  border-radius: 22px !important;
+  padding: 22px !important;
+  box-shadow: 0 30px 80px rgba(0,0,0,.40) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Title */
+.swagger-ui .info .title{
+  margin: 0 !important;
+  font-weight: 900 !important;
+  color: rgba(255,255,255,.96) !important;
+}
+
+.swagger-ui .info p,
+.swagger-ui .info li{
+  color: rgba(255,255,255,.72) !important;
+  line-height: 1.7 !important;
+}
+
+/* Tag header */
+.swagger-ui .opblock-tag{
+  margin-top: 18px !important;
+  padding: 12px 14px !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  background: rgba(255,255,255,.04) !important;
+  color: rgba(255,255,255,.92) !important;
+  font-weight: 900 !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Operation blocks */
+.swagger-ui .opblock{
+  border-radius: 18px !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  background: rgba(255,255,255,.04) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Summary row */
+.swagger-ui .opblock .opblock-summary{
+  border-bottom: 1px solid rgba(255,255,255,.10) !important;
+}
+
+/* Path + description */
+.swagger-ui .opblock-summary-path,
+.swagger-ui .opblock-summary-description{
+  color: rgba(255,255,255,.90) !important;
+  font-weight: 800 !important;
+}
+
+/* Method badge */
+.swagger-ui .opblock-summary-method{
+  border-radius: 12px !important;
+  font-weight: 900 !important;
+}
+
+/* Method colors */
+.swagger-ui .opblock.opblock-get .opblock-summary-method { background: #2563eb !important; }
+.swagger-ui .opblock.opblock-post .opblock-summary-method { background: #16a34a !important; }
+.swagger-ui .opblock.opblock-put .opblock-summary-method { background: #f59e0b !important; }
+.swagger-ui .opblock.opblock-delete .opblock-summary-method { background: #dc2626 !important; }
+
+/* Body text */
+.swagger-ui .opblock-description-wrapper p,
+.swagger-ui .markdown p,
+.swagger-ui .markdown li{
+  color: rgba(255,255,255,.78) !important;
+}
+
+/* Inputs readable */
+.swagger-ui input[type=text],
+.swagger-ui textarea,
+.swagger-ui select{
+  background: rgba(255,255,255,.92) !important;
+  color: #0b1220 !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255,255,255,.35) !important;
+}
+
+/* Tables readable */
+.swagger-ui table thead tr th,
+.swagger-ui table tbody tr td{
+  color: rgba(255,255,255,.85) !important;
+}
+
+/* Links */
+.swagger-ui a{
+  color: rgba(57,208,255,.95) !important;
+  font-weight: 800 !important;
+}
+
+/* ==================================================
+   Buttons — Match Records page buttons
+   Primary: blue gradient
+   Secondary: soft gray
+   ================================================== */
+
+.swagger-ui .btn,
+.swagger-ui .btn.execute,
+.swagger-ui .btn.authorize,
+.swagger-ui .btn.try-out,
+.swagger-ui .btn.cancel,
+.swagger-ui .btn.clear,
+.swagger-ui button,
+.swagger-ui input[type="button"],
+.swagger-ui input[type="submit"],
+.swagger-ui a.btn{
+  border-radius: 16px !important;
+  padding: 10px 16px !important;
+  font-weight: 900 !important;
+  letter-spacing: .2px !important;
+  cursor: pointer !important;
+
+  /* Secondary default */
+  background: rgba(255,255,255,.10) !important;
+  color: rgba(255,255,255,.92) !important;
+  border: 1px solid rgba(255,255,255,.18) !important;
+
+  box-shadow: 0 14px 30px rgba(0,0,0,.35) !important;
+  backdrop-filter: blur(10px);
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
+}
+
+.swagger-ui .btn:hover,
+.swagger-ui button:hover,
+.swagger-ui input[type="button"]:hover,
+.swagger-ui input[type="submit"]:hover,
+.swagger-ui a.btn:hover{
+  transform: translateY(-1px) !important;
+  box-shadow: 0 18px 40px rgba(0,0,0,.45) !important;
+  background: rgba(255,255,255,.14) !important;
+  border-color: rgba(255,255,255,.26) !important;
+}
+
+/* Primary buttons */
+.swagger-ui .btn.execute,
+.swagger-ui .btn.authorize,
+.swagger-ui .btn.try-out{
+  background: linear-gradient(135deg, rgba(79,125,255,.98), rgba(57,208,255,.70)) !important;
+  color: #071018 !important;
+  border: 1px solid rgba(255,255,255,.18) !important;
+}
+
+.swagger-ui .btn.execute:hover,
+.swagger-ui .btn.authorize:hover,
+.swagger-ui .btn.try-out:hover{
+  background: linear-gradient(135deg, rgba(79,125,255,1), rgba(57,208,255,.85)) !important;
+  box-shadow: 0 20px 50px rgba(57,208,255,.18), 0 18px 40px rgba(0,0,0,.45) !important;
+}
+
+/* Cancel/Clear keep secondary */
+.swagger-ui .btn.cancel,
+.swagger-ui .btn.clear{
+  background: rgba(255,255,255,.10) !important;
+  color: rgba(255,255,255,.92) !important;
+  border: 1px solid rgba(255,255,255,.20) !important;
+}
+
+/* Focus glow */
+.swagger-ui .btn:focus,
+.swagger-ui button:focus{
+  outline: none !important;
+  box-shadow:
+    0 0 0 4px rgba(57,208,255,.20) !important,
+    0 14px 30px rgba(0,0,0,.35) !important;
+}

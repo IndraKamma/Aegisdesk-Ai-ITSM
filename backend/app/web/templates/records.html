@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Records | AegisDesk AI</title>
+  <link rel="stylesheet" href="/static/site.css" />
+  <script defer src="/static/records.js"></script>
+</head>
+<body>
+  <div class="bg"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">A</div>
+      <div>
+        <div class="brand-title">AegisDesk AI</div>
+        <div class="brand-sub">Records</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href="/">Welcome</a>
+      <a href="/docs">Docs</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="hero" style="text-align:left;">
+      <h1><span class="grad">Records</span></h1>
+      <p>All tickets + filters (Unsolved / Solved). Mark solved and record technician name.</p>
+
+      <div class="buttons" style="justify-content:flex-start; flex-wrap:wrap; gap:10px;">
+        <button id="filterAll" class="btn secondary active">
+          All (<span id="countAll">0</span>)
+        </button>
+
+        <button id="filterUnsolved" class="btn secondary">
+          Unsolved (<span id="countUnsolved">0</span>)
+        </button>
+
+        <button id="filterSolved" class="btn secondary">
+          Solved (<span id="countSolved">0</span>)
+        </button>
+
+        <button id="btnRefresh" class="btn primary">Refresh</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Technician</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="ticketsBody">
+          <tr><td colspan="5" class="muted">Loading…</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+</body>
+</html>

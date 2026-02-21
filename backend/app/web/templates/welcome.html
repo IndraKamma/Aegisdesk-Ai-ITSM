@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Welcome | AegisDesk AI</title>
+  <link rel="stylesheet" href="/static/site.css" />
+</head>
+<body>
+  <div class="bg"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">A</div>
+      <div>
+        <div class="brand-title">AegisDesk AI</div>
+        <div class="brand-sub">Ticketing System • Incident Records • AI Assistance</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href="#" id="navAbout">About</a>
+      <a href="#" id="navServices">Services</a>
+      <a href="/docs">How to Post Tickets</a>
+      <a class="records" href="/records">Records</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- DEFAULT VIEW -->
+    <section class="hero" id="viewHome">
+      <h1>Welcome to <span class="grad">AegisDesk AI</span></h1>
+      <p>
+        AegisDesk AI is an enterprise-style ITSM ticketing and incident record system designed for real
+        Data Center, NOC, and IT Support workflows.
+      </p>
+
+      <div class="buttons">
+        <a class="btn primary" href="/docs">Open API Docs</a>
+        <a class="btn secondary" href="/records">Open Records</a>
+      </div>
+    </section>
+
+    <!-- ABOUT VIEW (HIDDEN until click) -->
+    <section class="card hidden" id="viewAbout">
+      <h2>About the Page</h2>
+      <p>
+        AegisDesk AI is built to demonstrate how real operational teams handle incidents from start to finish.
+        Users submit tickets with a title and description. The system captures priority, category, and status,
+        supports technician assignment, and stores work notes so every action is traceable.
+        It also provides AI-assisted triage (offline heuristic engine) to generate a short incident summary and
+        suggest who should handle the ticket. The goal is to maintain a clean, auditable record of operational work—
+        similar to tools like ServiceNow or Jira Service Management—while keeping everything lightweight and fast.
+      </p>
+
+      <div class="buttons" style="justify-content:flex-start;">
+        <button class="btn secondary" id="backFromAbout">Back</button>
+        <a class="btn primary" href="/records">Open Records</a>
+      </div>
+    </section>
+
+    <!-- SERVICES VIEW (HIDDEN until click) -->
+    <section class="card hidden" id="viewServices">
+      <h2>Services</h2>
+      <ul>
+        <li>Incident & ticket lifecycle tracking (Open → In Progress → Resolved → Closed)</li>
+        <li>Technician assignment (who is working on the issue)</li>
+        <li>Work notes / comments for troubleshooting steps</li>
+        <li>SLA fields (due-by time) to support accountability</li>
+        <li>AI-assisted triage (summary + category/priority suggestion)</li>
+        <li>Audit history (records of major changes)</li>
+      </ul>
+
+      <div class="buttons" style="justify-content:flex-start;">
+        <button class="btn secondary" id="backFromServices">Back</button>
+        <a class="btn primary" href="/docs">How to Post Tickets</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const viewHome = document.getElementById("viewHome");
+    const viewAbout = document.getElementById("viewAbout");
+    const viewServices = document.getElementById("viewServices");
+
+    function show(which){
+      viewHome.classList.add("hidden");
+      viewAbout.classList.add("hidden");
+      viewServices.classList.add("hidden");
+      which.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.getElementById("navAbout").addEventListener("click", (e) => {
+      e.preventDefault();
+      show(viewAbout);
+    });
+
+    document.getElementById("navServices").addEventListener("click", (e) => {
+      e.preventDefault();
+      show(viewServices);
+    });
+
+    document.getElementById("backFromAbout").addEventListener("click", () => show(viewHome));
+    document.getElementById("backFromServices").addEventListener("click", () => show(viewHome));
+  </script>
+</body>
+</html>

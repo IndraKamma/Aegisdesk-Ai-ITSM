@@ -1,0 +1,73 @@
+<nav class="top-nav">
+  <a href="#" data-view="home" class="nav-link active">Welcome</a>
+  <a href="#" data-view="about" class="nav-link">About</a>
+  <a href="#" data-view="services" class="nav-link">Services</a>
+  <a href="/docs" class="nav-link">How to Post Tickets</a>
+  <a href="/records" class="nav-link nav-btn">Records</a>
+</nav>
+
+<main class="page">
+  <!-- HOME / HERO -->
+  <section id="view-home" class="view view-active">
+    <!-- your hero card -->
+    <div class="glass hero-card">
+      <h1>Welcome to <span class="accent">AegisDesk AI</span></h1>
+      <p>Enterprise-style ITSM ticketing + incident records for Data Center / NOC / IT Ops.</p>
+      <div class="btn-row">
+        <a class="btn" href="/docs">Open API Docs</a>
+        <a class="btn btn-secondary" href="/records">Open Records</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="view-about" class="view">
+    <div class="glass">
+      <h2>About</h2>
+      <p>
+        AegisDesk AI is built to demonstrate real operational workflows: ticket creation, assignment,
+        SLAs, work notes, audit trail, and AI-assisted triage.
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="view-services" class="view">
+    <div class="glass">
+      <h2>Services</h2>
+      <ul>
+        <li>Incident & ticket lifecycle tracking (Open → In Progress → Resolved → Closed)</li>
+        <li>Technician assignment + ownership</li>
+        <li>Work notes / troubleshooting comments</li>
+        <li>SLA fields (due-by time)</li>
+        <li>AI-assisted triage (summary + priority/category suggestion)</li>
+        <li>Audit history</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<script>
+  const links = document.querySelectorAll(".nav-link[data-view]");
+  const views = document.querySelectorAll(".view");
+
+  function showView(name) {
+    views.forEach(v => v.classList.remove("view-active"));
+    document.getElementById(`view-${name}`)?.classList.add("view-active");
+
+    links.forEach(a => a.classList.remove("active"));
+    document.querySelector(`.nav-link[data-view="${name}"]`)?.classList.add("active");
+  }
+
+  links.forEach(a => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      showView(a.dataset.view);
+      history.replaceState(null, "", `/#${a.dataset.view}`);
+    });
+  });
+
+  // Open correct section if URL has hash
+  const hash = location.hash.replace("#", "");
+  if (hash) showView(hash);
+</script>
